@@ -21,6 +21,12 @@ class HarryPotter(unittest.TestCase):
         expected_total = 24
         self.assertEqual(total, expected_total)
 
+    def test_four_different_books(self):
+        quantities = [1,1,1,1,0]
+        total = self.calc_price(quantities)
+        expected_total = 25.6
+        self.assertEqual(total, expected_total)
+
     def test_price_total(self):
         quantities = [2,2,2,1,1]
         total = self.calc_price(quantities)
@@ -39,19 +45,28 @@ class HarryPotter(unittest.TestCase):
             quantities = map(lambda x: x - 1, quantities)
         return total
 
+    # def calc_discount(self, length):
+    #     if length == 0:
+    #         return 0
+    #     elif length == 1:
+    #         return 1
+    #     elif length == 2:
+    #         return 0.95
+    #     elif length == 3:
+    #         return 0.9
+    #     elif length == 4:
+    #         return 0.8
+    #     elif length == 5:
+    #         return 0.75
+    #     else:
+    #         print(length)
+    #         raise Exception
+
     def calc_discount(self, length):
-        if length == 0:
-            return 0
-        elif length == 1:
-            return 1
-        elif length == 2:
-            return 0.95
-        elif length == 3:
-            return 0.9
-        elif length == 4:
-            return 0.8
-        elif length == 5:
-            return 0.75
-        else:
-            print(length)
-            raise Exception
+        return {
+            1: 1,
+            2: 0.95,
+            3: 0.9,
+            4: 0.8,
+            5: 0.75
+        }.get(length, 0)
